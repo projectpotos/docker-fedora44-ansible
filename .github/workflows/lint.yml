@@ -78,3 +78,23 @@ jobs:
           advanced-security: false
           annotations: true
           persona: regular
+
+  all_green:
+    if: ${{ always() }}
+    needs:
+      - yamllint
+      - hadolint
+      - actionlint
+      - zizmor
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Verify no required job failed or was cancelled
+        env:
+          RESULTS: ${{ toJSON(needs.*.result) }}
+        run: |
+          echo "Job results: ${RESULTS}"
+          if echo "${RESULTS}" | grep -Eq '"(failure|cancelled)"'; then
+            echo "::error::At least one required job failed or was cancelled"
+            exit 1
+          fi
