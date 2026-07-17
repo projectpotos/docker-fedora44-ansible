@@ -1,4 +1,13 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["github>projectpotos/renovate-config"]
+  "extends": ["github>projectpotos/renovate-config"],
+  "packageRules": [
+    {
+      "description": "This repo provides a Fedora 44 image, update the digest only",
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["docker.io/library/fedora"],
+      "matchUpdateTypes": ["major", "minor", "patch"],
+      "enabled": false
+    }
+  ]
 }
