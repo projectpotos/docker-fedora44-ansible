@@ -17,7 +17,7 @@ jobs:
   lint:
     permissions:
       contents: read
-    uses: projectpotos/actions/.github/workflows/test-lint.yaml@31a073ace13fa1f689fe54cd71754f0ecba6dfb6 # v0.5.0
+    uses: projectpotos/actions/.github/workflows/test-lint.yaml@b239403e2a8ccd78f565b50e2db11177a01adde4 # v0.7.0
     with:
       yamllint-mode: standalone
       hadolint: true
@@ -32,6 +32,6 @@ jobs:
     permissions: {}
     steps:
       - name: Verify no required job failed or was cancelled
-        uses: projectpotos/actions/all-green@31a073ace13fa1f689fe54cd71754f0ecba6dfb6 # v0.5.0
+        uses: projectpotos/actions/all-green@b239403e2a8ccd78f565b50e2db11177a01adde4 # v0.7.0
         with:
           needs: ${{ toJSON(needs) }}
